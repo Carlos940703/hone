@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://promptsmith-sandy.vercel.app/sitemap.xml
+Sitemap: https://honeprompt.vercel.app/sitemap.xml

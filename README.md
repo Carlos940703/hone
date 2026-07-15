@@ -1,10 +1,10 @@
-# Promptsmith
+# Hone
 
 A free, open-source tool that rewrites your rough prompt into a clean, professional AI instruction, **without changing what you meant.**
 
-Paste anything you would type into ChatGPT, Claude or Gemini. Promptsmith finds the role, task and constraints hiding in your text, restructures them into clear labelled sections, tightens the wording, and hands back a polished prompt you can run for a better result. No login. No cost. Your prompts are never stored.
+Paste anything you would type into ChatGPT, Claude or Gemini. Hone finds the role, task and constraints hiding in your text, restructures them into clear labelled sections, tightens the wording, and hands back a polished prompt you can run for a better result. No login. No cost. Your prompts are never stored.
 
-**Live:** https://promptsmith-sandy.vercel.app
+**Live:** https://honeprompt.vercel.app
 
 ## How it works
 

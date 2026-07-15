@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 /* =========================================================================
-   PROMPTSMITH — "warm workshop" · anti-slop rulebook
+   HONE — warm editorial · anti-slop rulebook
    Palette: cream paper + warm ink + ONE ember accent (≤10%). Green = success.
    Type: Fraunces (editorial serif display) · General Sans (UI) · JetBrains
-   Mono (the prompt text itself). Signature: the ink-on-paper craft table.
+   Mono (the prompt text). Clean solid paper, no synthetic grid.
    ========================================================================= */
 :root {
   --bg: #f7f3ec; /* warm cream paper */
@@ -57,9 +57,6 @@ body {
   font-weight: 500;
   margin: 0;
   overflow-x: hidden;
-  /* faint paper grain, cheaply drawn */
-  background-image: radial-gradient(rgba(28, 24, 19, 0.022) 1px, transparent 1px);
-  background-size: 4px 4px;
 }
 
 ::selection {

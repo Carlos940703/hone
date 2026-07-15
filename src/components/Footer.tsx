@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
 import { Github } from "lucide-react";
-import { LogoMark } from "./Logo";
+import { Wordmark } from "./Logo";
 
-const REPO = "https://github.com/Carlos940703/promptsmith";
+const REPO = "https://github.com/Carlos940703/hone";
 
 const COLS: { title: string; links: { label: string; to: string; ext?: boolean }[] }[] = [
   {
     title: "Tool",
     links: [
-      { label: "The refiner", to: "/#refiner" },
+      { label: "Sharpen a prompt", to: "/#refiner" },
       { label: "How it works", to: "/#how" },
-      { label: "Principles", to: "/#principles" },
+      { label: "Reviews", to: "/#reviews" },
     ],
   },
   {
@@ -32,16 +32,11 @@ const COLS: { title: string; links: { label: string; to: string; ext?: boolean }
 
 export function Footer() {
   return (
-    <footer className="border-t border-line bg-surface-2/40">
+    <footer className="border-t border-line">
       <div className="u-container py-14">
         <div className="grid gap-10 md:grid-cols-[1.5fr_2fr]">
           <div>
-            <span className="inline-flex items-center gap-2.5">
-              <LogoMark size={30} />
-              <span className="font-display text-[1.25rem] font-semibold tracking-tighter">
-                Promptsmith
-              </span>
-            </span>
+            <Wordmark size="text-[1.35rem]" />
             <p className="mt-4 max-w-sm text-[0.95rem] leading-relaxed text-muted">
               A free, open-source tool that rewrites rough prompts into clean, professional
               instructions. Your meaning stays. The clarity improves.
@@ -87,7 +82,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-line pt-6 sm:flex-row sm:items-center">
           <p className="text-[0.82rem] text-muted">
-            © {new Date().getFullYear()} Promptsmith. Open source under the MIT license.
+            © {new Date().getFullYear()} Hone. Open source under the MIT license.
           </p>
           <div className="flex items-center gap-4">
             <span className="font-mono text-[0.74rem] text-muted">built for better prompts</span>

@@ -78,27 +78,26 @@ export function Tool() {
 
   return (
     <section id="refiner" className="relative overflow-hidden">
-      {/* soft ember glow, kept behind content — no synthetic UI in the hero */}
+      {/* soft ember glow behind the headline (no synthetic UI in the hero) */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-[-8rem] -z-10 mx-auto h-72 w-[42rem] max-w-[90vw] rounded-full opacity-70 blur-3xl"
+        className="pointer-events-none absolute inset-x-0 top-[-5rem] -z-10 mx-auto h-64 w-[40rem] max-w-[90vw] rounded-full opacity-60 blur-3xl"
         style={{ background: "radial-gradient(closest-side, var(--accent-wash), transparent)" }}
       />
 
-      <div className="u-container pt-16 pb-14 sm:pt-24 sm:pb-20">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="u-label mb-5 text-accent">Free · open source · no login</p>
-          <h1 className="text-balance font-display text-[2.5rem] font-semibold leading-[1.04] tracking-tighter sm:text-[3.6rem]">
-            Rewrite rough prompts into instructions the model actually follows.
+      <div className="u-container flex flex-col justify-center pt-12 pb-16 lg:min-h-[calc(100dvh-70px)] lg:py-6">
+        <div className="mx-auto max-w-xl text-center">
+          <h1 className="text-balance font-display text-[2.6rem] font-semibold leading-[1.02] tracking-tighter sm:text-[3.2rem]">
+            Every prompt, sharpened.
           </h1>
-          <p className="mx-auto mt-6 max-w-xl text-pretty text-[1.06rem] leading-relaxed text-muted">
-            Paste anything you would type into ChatGPT, Claude or Gemini. Promptsmith cleans it up,
-            structures it and sharpens the wording, without ever changing what you meant.
+          <p className="mx-auto mt-5 max-w-lg text-pretty text-[1.05rem] leading-relaxed text-muted">
+            Paste a rough prompt. Hone rewrites it into a clear, professional instruction, without
+            changing what you meant.
           </p>
         </div>
 
         {/* the workbench */}
-        <div className="u-card u-frame-shadow mx-auto mt-11 max-w-3xl overflow-hidden">
+        <div className="u-card u-frame-shadow mx-auto mt-8 w-full max-w-3xl overflow-hidden">
           {/* input */}
           <div className="border-b border-line px-4 pt-4 sm:px-6">
             <div className="flex items-center justify-between py-3">
@@ -121,7 +120,7 @@ export function Tool() {
               }}
               placeholder="e.g. write a landing page headline for my ai note taking app for students, make it catchy and clear..."
               spellCheck={false}
-              className="min-h-[168px] w-full resize-y bg-transparent pb-4 font-mono text-[0.9rem] leading-relaxed text-ink outline-none placeholder:text-muted/60"
+              className="min-h-[148px] w-full resize-y bg-transparent pb-4 font-mono text-[0.9rem] leading-relaxed text-ink outline-none placeholder:text-muted/60"
             />
             {!text && (
               <div className="flex flex-wrap items-center gap-2 pb-4">
@@ -166,6 +165,10 @@ export function Tool() {
             </button>
           </div>
         </div>
+
+        <p className="mx-auto mt-4 text-center text-[0.85rem] text-muted">
+          Free forever · no login · your prompts are never stored
+        </p>
 
         {/* live step log + result */}
         <div className="mx-auto max-w-3xl">
