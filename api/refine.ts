@@ -3,7 +3,7 @@
  * (the repo is public, so the key never ships to the browser) and applies a
  * best-effort per-IP rate limit to keep this free tool from being abused.
  */
-import { refinePrompt } from "./_engine";
+import { refinePrompt } from "./_engine.js";
 
 // Best-effort in-memory limiter. Serverless instances are ephemeral and may
 // scale out, so this deters casual abuse rather than guaranteeing a hard cap.
