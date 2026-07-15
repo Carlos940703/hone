@@ -24,7 +24,7 @@ export function Privacy() {
     title: "Privacy — Promptsmith",
     description:
       "Promptsmith does not store your prompts. They are sent to the AI model to be refined and returned, and nothing is logged or saved.",
-    canonical: "https://promptsmith.vercel.app/privacy",
+    canonical: "https://promptsmith-sandy.vercel.app/privacy",
   });
   return (
     <Shell title="Privacy">
@@ -81,7 +81,7 @@ export function Terms() {
   useSeo({
     title: "Terms — Promptsmith",
     description: "The simple terms of use for Promptsmith, a free and open-source prompt refiner.",
-    canonical: "https://promptsmith.vercel.app/terms",
+    canonical: "https://promptsmith-sandy.vercel.app/terms",
   });
   return (
     <Shell title="Terms of use">
