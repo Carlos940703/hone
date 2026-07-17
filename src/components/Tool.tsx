@@ -1,21 +1,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import {
-  ArrowRight,
-  Check,
-  Copy,
-  RotateCcw,
-  AlertCircle,
-  ShieldCheck,
-  Wand2,
-} from "lucide-react";
+import { ArrowRight, Check, Copy, RotateCcw, AlertCircle, ShieldCheck, Wand2 } from "lucide-react";
 import { useRefine, type Target } from "@/lib/useRefine";
 
 const MAX = 8000;
 
-/** Render the refined prompt with **bold** headings shown as bold (no literal
- *  asterisks), while the raw markdown text is what the Copy button copies.
- *  Whitespace and line breaks are preserved by the pre-wrap container. */
+/** Render **bold** headings as bold (no literal asterisks); Copy still copies
+ *  the raw markdown. Whitespace preserved by the pre-wrap container. */
 function renderRefined(text: string) {
   return text.split(/(\*\*[^*]+\*\*)/g).map((seg, i) => {
     if (seg.startsWith("**") && seg.endsWith("**") && seg.length > 4) {
@@ -61,7 +52,6 @@ export function Tool() {
   const busy = status === "working";
   const chars = text.length;
   const canRefine = chars > 0 && chars <= MAX && !busy;
-
   const doRefine = () => canRefine && refine(text, target);
 
   const copy = async () => {
@@ -77,18 +67,15 @@ export function Tool() {
   };
 
   return (
-    <section id="refiner" className="relative overflow-hidden">
-      {/* soft ember glow behind the headline (no synthetic UI in the hero) */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-[-5rem] -z-10 mx-auto h-64 w-[40rem] max-w-[90vw] rounded-full opacity-60 blur-3xl"
-        style={{ background: "radial-gradient(closest-side, var(--accent-wash), transparent)" }}
-      />
-
-      <div className="u-container flex flex-col justify-center pt-12 pb-16 lg:min-h-[calc(100dvh-70px)] lg:py-6">
-        <div className="mx-auto max-w-xl text-center">
-          <h1 className="text-balance font-display text-[2.6rem] font-semibold leading-[1.02] tracking-tighter sm:text-[3.2rem]">
-            Every prompt, sharpened.
+    <section
+      id="refiner"
+      className="flex min-h-[100svh] flex-col justify-center pb-14 pt-[clamp(7rem,13vh,8.5rem)]"
+    >
+      <div className="u-container">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="u-label mb-5">Free · open source · no login</p>
+          <h1 className="text-balance font-display text-[clamp(2.5rem,4.5vw+0.4rem,4rem)] font-bold leading-[1.02] tracking-tightest text-ink">
+            Every prompt, <span className="text-beige">sharpened</span>.
           </h1>
           <p className="mx-auto mt-5 max-w-lg text-pretty text-[1.05rem] leading-relaxed text-muted">
             Paste a rough prompt. Hone rewrites it into a clear, professional instruction, without
@@ -97,18 +84,11 @@ export function Tool() {
         </div>
 
         {/* the workbench */}
-        <div className="u-card u-frame-shadow mx-auto mt-8 w-full max-w-3xl overflow-hidden">
-          {/* input */}
+        <div className="u-card u-frame-shadow mx-auto mt-9 w-full max-w-3xl overflow-hidden">
           <div className="border-b border-line px-4 pt-4 sm:px-6">
             <div className="flex items-center justify-between py-3">
-              <span className="font-mono text-[0.72rem] uppercase tracking-wider text-muted">
-                Your prompt
-              </span>
-              <span
-                className={`font-mono text-[0.72rem] ${
-                  chars > MAX ? "text-neg" : "text-muted"
-                }`}
-              >
+              <span className="u-label !text-[0.68rem]">Your prompt</span>
+              <span className={`u-tabular text-[0.72rem] ${chars > MAX ? "text-neg" : "text-muted"}`}>
                 {chars}/{MAX}
               </span>
             </div>
@@ -120,11 +100,11 @@ export function Tool() {
               }}
               placeholder="e.g. write a landing page headline for my ai note taking app for students, make it catchy and clear..."
               spellCheck={false}
-              className="min-h-[148px] w-full resize-y bg-transparent pb-4 font-mono text-[0.9rem] leading-relaxed text-ink outline-none placeholder:text-muted/60"
+              className="min-h-[150px] w-full resize-y bg-transparent pb-4 text-[0.95rem] leading-relaxed text-ink outline-none placeholder:text-muted/60"
             />
             {!text && (
               <div className="flex flex-wrap items-center gap-2 pb-4">
-                <span className="font-mono text-[0.72rem] text-muted">try:</span>
+                <span className="text-[0.78rem] text-muted">Try:</span>
                 {EXAMPLES.map((ex) => (
                   <button
                     key={ex.label}
@@ -138,7 +118,6 @@ export function Tool() {
             )}
           </div>
 
-          {/* controls */}
           <div className="flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
             <div className="flex items-center gap-1 rounded-lg bg-surface-2 p-1">
               {TARGETS.map((t) => (
@@ -157,11 +136,11 @@ export function Tool() {
             <button
               onClick={doRefine}
               disabled={!canRefine}
-              className="btn-accent inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-[0.95rem] font-semibold"
+              className="btn-ink inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-[0.95rem] font-medium"
             >
               <Wand2 size={17} strokeWidth={2.2} />
               {busy ? "Refining..." : "Refine prompt"}
-              {!busy && <ArrowRight size={16} strokeWidth={2.4} />}
+              {!busy && <ArrowRight size={16} strokeWidth={2.2} />}
             </button>
           </div>
         </div>
@@ -202,11 +181,7 @@ export function Tool() {
                             <span className={state === "active" ? "smith-pulse" : ""}>•</span>
                           )}
                         </span>
-                        <span
-                          className={`text-[0.9rem] ${
-                            state === "wait" ? "text-muted" : "text-ink"
-                          }`}
-                        >
+                        <span className={`text-[0.9rem] ${state === "wait" ? "text-muted" : "text-ink"}`}>
                           {s}
                         </span>
                       </li>
@@ -229,7 +204,7 @@ export function Tool() {
                   <p className="mt-1 text-[0.9rem] text-muted">{error}</p>
                   <button
                     onClick={doRefine}
-                    className="btn-outline mt-3 inline-flex items-center gap-2 rounded-lg px-3.5 py-1.5 text-[0.85rem] font-semibold"
+                    className="btn-outline mt-3 inline-flex items-center gap-2 rounded-xl px-3.5 py-1.5 text-[0.85rem] font-semibold"
                   >
                     <RotateCcw size={14} /> Try again
                   </button>
@@ -247,7 +222,7 @@ export function Tool() {
               >
                 <div className="u-card u-frame-shadow overflow-hidden">
                   <div className="flex items-center justify-between border-b border-line bg-surface-2/50 px-5 py-3">
-                    <span className="inline-flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-wider text-ink">
+                    <span className="inline-flex items-center gap-2 u-label !text-[0.68rem] !text-ink">
                       <ShieldCheck size={14} className="text-pos" /> Refined prompt
                     </span>
                     <button
@@ -282,13 +257,13 @@ export function Tool() {
                 <div className="mt-4 flex flex-wrap gap-3">
                   <button
                     onClick={() => refine(text, target)}
-                    className="btn-outline inline-flex items-center gap-2 rounded-lg px-4 py-2 text-[0.88rem] font-semibold"
+                    className="btn-outline inline-flex items-center gap-2 rounded-xl px-4 py-2 text-[0.88rem] font-semibold"
                   >
                     <RotateCcw size={15} /> Refine again
                   </button>
                   <button
                     onClick={startOver}
-                    className="btn-outline inline-flex items-center gap-2 rounded-lg px-4 py-2 text-[0.88rem] font-semibold"
+                    className="btn-outline inline-flex items-center gap-2 rounded-xl px-4 py-2 text-[0.88rem] font-semibold"
                   >
                     New prompt
                   </button>

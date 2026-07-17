@@ -1,21 +1,23 @@
+import { ClipboardPaste, Wand2, Copy } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { Testimonials } from "./Testimonials";
+import { Button } from "./ui/Button";
 
 const REPO = "https://github.com/Carlos940703/hone";
 
 const STEPS = [
   {
-    verb: "Paste",
-    title: "Drop in your prompt",
-    body: "Whatever you would normally type into a chatbot. Rough, rambling, half-formed, full of typos. It all works.",
+    Icon: ClipboardPaste,
+    title: "Paste your prompt",
+    body: "Rough, rambling, half-formed, full of typos. Whatever you would normally type into a chatbot. It all works.",
   },
   {
-    verb: "Refine",
+    Icon: Wand2,
     title: "Hone rebuilds it",
-    body: "It finds the role, the task and your constraints, then structures them into clear sections with sharper wording. Your meaning stays put.",
+    body: "It finds the role, the task and your constraints, then structures them into clean sections with sharper wording. Your meaning stays put.",
   },
   {
-    verb: "Copy",
+    Icon: Copy,
     title: "Run the sharper version",
     body: "Take the refined prompt straight to ChatGPT, Claude or Gemini. Same intent you started with, a noticeably better answer.",
   },
@@ -23,38 +25,26 @@ const STEPS = [
 
 function HowItWorks() {
   return (
-    <section id="how" className="border-t border-line">
-      <div className="u-container py-20 sm:py-24">
-        <div className="grid gap-12 md:grid-cols-[0.9fr_1.4fr] md:gap-16">
-          <Reveal>
-            <div className="md:sticky md:top-28">
-              <h2 className="font-display text-[2.1rem] font-semibold leading-tight tracking-tighter sm:text-[2.6rem]">
-                Three steps. No account.
-              </h2>
-              <p className="mt-4 max-w-sm text-pretty leading-relaxed text-muted">
-                There is nothing to set up and nothing to learn. Hone does one thing and does it
-                cleanly.
-              </p>
-            </div>
-          </Reveal>
+    <section id="how" className="border-t border-line bg-surface-2 py-[clamp(5rem,12vw,9rem)]">
+      <div className="u-container">
+        <Reveal>
+          <h2 className="max-w-2xl font-display text-[clamp(2rem,4.4vw,3rem)] font-bold leading-[1.06] tracking-tighter text-ink text-balance">
+            Three steps. <span className="text-beige">No account.</span>
+          </h2>
+        </Reveal>
 
-          <div className="divide-y divide-line border-t border-line">
-            {STEPS.map((s, i) => (
-              <Reveal key={s.verb} delay={i * 0.06}>
-                <div className="flex items-baseline gap-6 py-7">
-                  <span className="font-mono text-[0.8rem] uppercase tracking-widest text-accent">
-                    {s.verb}
-                  </span>
-                  <div>
-                    <h3 className="font-display text-[1.4rem] font-semibold tracking-tight">
-                      {s.title}
-                    </h3>
-                    <p className="mt-2 max-w-md text-pretty leading-relaxed text-muted">{s.body}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+        <div className="mt-14 grid gap-x-8 gap-y-10 sm:grid-cols-3">
+          {STEPS.map((s, i) => (
+            <Reveal key={s.title} delay={i * 0.08}>
+              <div className="group">
+                <span className="grid size-12 place-items-center rounded-xl bg-beige-wash text-accent transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1 group-hover:scale-105">
+                  <s.Icon className="size-[1.4rem]" strokeWidth={2} />
+                </span>
+                <h3 className="mt-5 text-[1.125rem] font-semibold tracking-tight text-ink">{s.title}</h3>
+                <p className="mt-2 text-[0.975rem] leading-[1.55] text-muted text-pretty">{s.body}</p>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
@@ -63,35 +53,29 @@ function HowItWorks() {
 
 function CTA() {
   return (
-    <section className="border-t border-line">
-      <div className="u-container py-20 text-center sm:py-28">
+    <section className="border-t border-line py-[clamp(5rem,12vw,10rem)]">
+      <div className="u-container">
         <Reveal>
-          <h2 className="mx-auto max-w-2xl text-balance font-display text-[2.2rem] font-semibold leading-[1.08] tracking-tighter sm:text-[3rem]">
-            Stop rewriting prompts by hand. <span className="text-accent">Hone the next one</span> in
-            a second.
-          </h2>
-          <p className="mx-auto mt-5 max-w-lg text-pretty leading-relaxed text-muted">
-            Paste it, refine it, copy it. Free, open source, and it never touches what you meant.
-          </p>
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-            <a
-              href="#refiner"
-              className="btn-accent inline-flex items-center gap-2 rounded-lg px-6 py-3 text-[0.98rem] font-semibold"
-            >
-              Sharpen a prompt
-            </a>
-            <a
-              href={REPO}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-outline inline-flex items-center gap-2 rounded-lg px-6 py-3 text-[0.98rem] font-semibold"
-            >
-              View the source
-            </a>
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="font-display text-[clamp(2.25rem,5vw,3.75rem)] font-bold leading-[1.04] tracking-tightest text-ink text-balance">
+              Stop rewriting prompts by hand. <span className="text-beige">Hone the next one</span> in
+              a second.
+            </h2>
+            <p className="mx-auto mt-6 max-w-xl text-[clamp(1.0625rem,0.5vw+0.95rem,1.3rem)] leading-[1.6] text-muted text-pretty">
+              Paste it, refine it, copy it. Free, open source, and it never touches what you meant.
+            </p>
+            <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+              <Button as="a" href="#refiner" withArrow>
+                Sharpen a prompt
+              </Button>
+              <Button as="a" href={REPO} variant="outline">
+                View the source
+              </Button>
+            </div>
+            <p className="u-tabular mt-6 text-[0.75rem] text-muted">
+              No login · no cost · prompts never stored
+            </p>
           </div>
-          <p className="mt-7 font-mono text-[0.76rem] text-muted">
-            no login · no cost · prompts never stored
-          </p>
         </Reveal>
       </div>
     </section>

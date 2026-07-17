@@ -4,7 +4,7 @@ import { useSeo } from "@/lib/seo";
 
 function Shell({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="u-container max-w-prose py-16 sm:py-20">
+    <div className="u-container max-w-prose pt-[clamp(6.5rem,12vh,8rem)] pb-16 sm:pb-20">
       <Link
         to="/"
         className="inline-flex items-center gap-2 text-[0.9rem] font-medium text-muted transition-colors hover:text-ink"

@@ -3,27 +3,31 @@
 @tailwind utilities;
 
 /* =========================================================================
-   HONE — warm editorial · anti-slop rulebook
-   Palette: cream paper + warm ink + ONE ember accent (≤10%). Green = success.
-   Type: Fraunces (editorial serif display) · General Sans (UI) · JetBrains
-   Mono (the prompt text). Clean solid paper, no synthetic grid.
+   HONE — HireCheck /saas design system, ember accent.
+   Same tokens, fonts, black/white buttons and spacing as HireCheck. Ember is
+   used sparingly like HireCheck uses beige (one headline word, small marks).
+   Composition differs (it is a single tool), but it is a /saas-family site.
    ========================================================================= */
 :root {
-  --bg: #f7f3ec; /* warm cream paper */
-  --surface: #fffdf9; /* card / panel */
-  --surface-2: #efe8dc; /* one tonal step */
-  --ink: #1c1813; /* warm near-black */
-  --muted: #6c6357; /* warm grey text */
-  --hairline: #e6dccb; /* warm hairline */
-  --accent: #cf4f28; /* ember / terracotta — the one accent */
+  --bg: #fbfbfa;
+  --surface: #ffffff;
+  --surface-2: #f4f4f3;
+  --ink: #15161a;
+  --muted: #5c5f66;
+  --hairline: #e8e8e6;
+  --accent: #cf4f28; /* ember — the one accent */
   --accent-press: #b23f1c;
-  --accent-wash: #fbe8df;
-  --pos: #2f7d54; /* green — success / copied only */
-  --pos-wash: #e6f1ea;
-  --neg: #b23b2a; /* red — errors only */
+  --accent-wash: #fbeadf;
+  /* beige aliases → ember so HireCheck component code reuses verbatim */
+  --beige: #cf4f28;
+  --beige-soft: #f0c3ac;
+  --beige-wash: #fbeadf;
+  --select: #f7d9c9;
+  --pos: #15803d;
+  --pos-wash: #eaf4ee;
+  --neg: #b91c1c;
   --radius: 1rem;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --dur: 0.4s;
   color-scheme: light;
 }
 
@@ -60,7 +64,7 @@ body {
 }
 
 ::selection {
-  background: #f4d3c5;
+  background: var(--select);
   color: var(--ink);
 }
 
@@ -71,17 +75,17 @@ body {
   background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #ddd2bf;
+  background: #ddd9d5;
   border-radius: 999px;
   border: 3px solid var(--bg);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #ccbfa8;
+  background: #cbc6c1;
 }
 
 @layer components {
   .u-container {
-    width: min(92vw, 71rem);
+    width: min(92vw, 75rem);
     margin-inline: auto;
   }
 
@@ -89,9 +93,19 @@ body {
     font-family: "General Sans", ui-sans-serif, system-ui, sans-serif;
     font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--muted);
+  }
+
+  .u-tabular {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+
+  .text-muted {
+    color: var(--muted);
+    font-weight: 450;
   }
 
   .u-card {
@@ -101,32 +115,32 @@ body {
   }
 
   .u-frame-shadow {
-    box-shadow: 0 30px 70px -34px rgba(40, 28, 16, 0.28);
+    box-shadow: 0 24px 60px -28px rgba(21, 22, 26, 0.22);
   }
 
-  /* the ember button — background shift only, no vertical wiggle on hover */
-  .btn-accent {
-    background: var(--accent);
+  /* Inline buttons — always black/white, matching the HireCheck Button. */
+  .btn-ink {
+    background: var(--ink);
     color: #fff;
-    transition: background-color 0.18s var(--ease);
+    transition: background-color 0.15s var(--ease);
   }
-  .btn-accent:hover {
-    background: var(--accent-press);
+  .btn-ink:hover {
+    background: #2a2b31;
   }
-  .btn-accent:disabled {
-    opacity: 0.55;
-    cursor: not-allowed;
-  }
-
   .btn-outline {
     background: transparent;
     color: var(--ink);
     border: 1px solid var(--hairline);
-    transition: background-color 0.18s var(--ease), border-color 0.18s var(--ease);
+    transition: background-color 0.15s var(--ease), border-color 0.15s var(--ease);
   }
   .btn-outline:hover {
-    background: var(--surface-2);
-    border-color: #d8cdb8;
+    background: var(--surface);
+    border-color: rgba(21, 22, 26, 0.4);
+  }
+  .btn-ink:disabled,
+  .btn-outline:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 }
 
@@ -139,17 +153,15 @@ body {
   }
 }
 
-/* Rendered refined prompt (trusted, our own output) */
+/* Rendered refined prompt — General Sans, whitespace preserved. */
 .smith-out {
-  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-  font-size: 0.86rem;
+  font-size: 0.95rem;
   line-height: 1.7;
   color: var(--ink);
   white-space: pre-wrap;
   word-break: break-word;
 }
 
-/* subtle blink for the live step cursor */
 @keyframes smith-pulse {
   0%,
   100% {
@@ -166,4 +178,26 @@ body {
   .smith-pulse {
     animation: none;
   }
+}
+
+/* Legal / article body */
+.prose-sl {
+  color: var(--muted);
+  line-height: 1.75;
+}
+.prose-sl h2 {
+  font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 1.4vw + 1rem, 1.5rem);
+  letter-spacing: -0.01em;
+  margin-top: 2.25rem;
+  margin-bottom: 0.5rem;
+}
+.prose-sl p {
+  margin-top: 0.85rem;
+}
+.prose-sl strong {
+  color: var(--ink);
+  font-weight: 600;
 }

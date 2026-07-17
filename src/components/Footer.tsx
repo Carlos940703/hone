@@ -10,7 +10,7 @@ const COLS: { title: string; links: { label: string; to: string; ext?: boolean }
     links: [
       { label: "Sharpen a prompt", to: "/#refiner" },
       { label: "How it works", to: "/#how" },
-      { label: "Reviews", to: "/#reviews" },
+      { label: "Testimonials", to: "/#testimonials" },
     ],
   },
   {
@@ -85,7 +85,7 @@ export function Footer() {
             © {new Date().getFullYear()} Hone. Open source under the MIT license.
           </p>
           <div className="flex items-center gap-4">
-            <span className="font-mono text-[0.74rem] text-muted">built for better prompts</span>
+            <span className="u-tabular text-[0.74rem] text-muted">built for better prompts</span>
             <a
               href={REPO}
               target="_blank"
